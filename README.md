@@ -64,4 +64,20 @@ School project by Prestros Fabian, Rath Tobias and Rucker Josef
 
 ![gong-tx Flow-Graph](Images/gong-tx.png)
 
-### Funktion?
+### Aufbau:
+
+- **Wav File Source:** Dieser Block lädt eine Audiodatei (hier „gong.wav“) und gibt sie als Signal aus. Die Option „Repeat: Yes“ bedeutet, dass die Wiedergabe der Datei in einer Schleife erfolgt, also nach dem Ende sofort wieder von vorne beginnt.
+
+- **Multiply Const:** Dieser Block multipliziert das Audiosignal mit einem konstanten Faktor, hier 1,6, was die Amplitude des Signals erhöht.
+
+- **Add Const:** Dem Signal wird ein konstanter Wert hinzugefügt, in diesem Fall 1. Dies könnte dazu dienen, einen Gleichspannungsanteil (DC-Offset) hinzuzufügen.
+
+- **Signal Source:** Erzeugt ein sinusförmiges Signal (Cosine Wave) mit einer Frequenz von 4 kHz und einer Amplitude von 1, das als Trägersignal dienen könnte.
+
+- **Multiply:** Dieser Block multipliziert das sinusförmige Signal mit dem aus der WAV-Datei kommenden (und bereits modifizierten) Audiosignal. Dadurch entsteht ein amplitudenmoduliertes Signal.
+
+- **Float To Complex:** Wandelt das amplitudenmodulierte Signal von einem Float- (also einem reellen) in ein komplexes Signal um, das für die Übertragung über SDR nötig ist.
+
+- **UHD: USRP Sink:** Dieser Block sendet das verarbeitete Signal an ein SDR-Gerät zur Übertragung. Die Einstellungen für die Sample-Rate, die Zentralfrequenz und die Antenne sind entsprechend vorgegeben.
+
+- **QT GUI Frequency Sink:** Ein visuelles Diagnosetool, das das Spektrum des übertragenen Signals zeigt. In diesem Fall wird kein Zentrum der Frequenz angezeigt, was darauf hinweist, dass es für visuelle Rückmeldung und keine spezifische Frequenzanalyse konfiguriert ist.
