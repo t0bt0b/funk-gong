@@ -2,6 +2,35 @@
 School project by Prestros Fabian, Rath Tobias and Rucker Josef
 
 
+## funkR (FM Radio)
+
+![funkR Flow-Graph](Images/funkR.png)
+
+### Aufbau:
+
+- **UHD USRP Source:** Dies ist die Signalquelle, die über ein USRP-Gerät läuft. Hier ist die Sample-Rate auf 10 Msps eingestellt, die Zentralfrequenz auf 107,5 MHz, und die Bandbreite auf 10 MHz. Auch hier ist die automatische Verstärkungsregelung (AGC) aktiviert.
+
+- **QT GUI Range:** Diese Benutzeroberfläche ermöglicht es, die Zentralfrequenz des USRP-Gerätes anzupassen. Sie kann zwischen 85 MHz und 110 MHz variiert werden, mit einer Schrittweite von 1 MHz.
+
+- **Rational Resampler:** Dieser Block ändert die Sample-Rate des eingehenden Signals, indem er das Signal um den Faktor 25 dezimiert, was bedeutet, dass die Rate der verarbeiteten Samples reduziert wird.
+
+- **Low Pass Filter:** Ein Tiefpassfilter, der höhere Frequenzen abschneidet, um Interferenzen und Rauschen außerhalb des gewünschten Frequenzbands zu eliminieren. Hier ist er so eingestellt, dass er Signale über 100 kHz herausfiltert.
+
+- **WBFM Receive:** Dieser Block ist spezifisch für die Verarbeitung von Breitband-FM-Signalen. Er demoduliert das Signal, das mit einer Rate von 400 kHz abgetastet wurde. Das Ergebnis ist ein demoduliertes Audiosignal, das für den menschlichen Gehörsinn wahrnehmbar ist.
+
+- **Rational Resampler (nach dem WBFM Receive):** Wie im vorherigen Blockdiagramm wird auch hier das Signal weiter dezimiert, um die Sample-Rate auf 48 kHz zu reduzieren, was eine Standard-Audio-Sample-Rate ist.
+
+- **Audio Sink:** Der Audio Sink gibt das verarbeitete Audiosignal an den Audioausgang des Computers zur akustischen Wiedergabe aus.
+
+- **QT GUI Frequency Sink und QT GUI Waterfall Sink:** Diese grafischen Blöcke zeigen eine Echtzeit-Visualisierung des Frequenzspektrums (Frequency Sink) und des zeitabhängigen Spektrums (Waterfall Sink) des verarbeiteten Signals. Sie zeigen die Daten an, die durch das USRP-Gerät empfangen werden.
+
+- **Variable:** Es gibt einen Variable-Block (variable_0), dessen Wert im Diagramm mit 0 angegeben ist. Dieser könnte als Platzhalter für spätere Konfigurationen oder Berechnungen dienen.
+
+### Simulation/Ausgabe:
+
+![funkR Sim](Images/funkR-sim.png)
+
+
 ## FUNKGONG
 
 ![FUNKGONG Flow-Graph](Images/FUNKGONG.png)
@@ -32,33 +61,6 @@ School project by Prestros Fabian, Rath Tobias and Rucker Josef
 
 ![FUNKGONG Sim](Images/FUNKGONG-sim.png)
 
-## funkR (FM Radio)
-
-![funkR Flow-Graph](Images/funkR.png)
-
-### Aufbau:
-
-- **UHD USRP Source:** Dies ist die Signalquelle, die über ein USRP-Gerät läuft. Hier ist die Sample-Rate auf 10 Msps eingestellt, die Zentralfrequenz auf 107,5 MHz, und die Bandbreite auf 10 MHz. Auch hier ist die automatische Verstärkungsregelung (AGC) aktiviert.
-
-- **QT GUI Range:** Diese Benutzeroberfläche ermöglicht es, die Zentralfrequenz des USRP-Gerätes anzupassen. Sie kann zwischen 85 MHz und 110 MHz variiert werden, mit einer Schrittweite von 1 MHz.
-
-- **Rational Resampler:** Dieser Block ändert die Sample-Rate des eingehenden Signals, indem er das Signal um den Faktor 25 dezimiert, was bedeutet, dass die Rate der verarbeiteten Samples reduziert wird.
-
-- **Low Pass Filter:** Ein Tiefpassfilter, der höhere Frequenzen abschneidet, um Interferenzen und Rauschen außerhalb des gewünschten Frequenzbands zu eliminieren. Hier ist er so eingestellt, dass er Signale über 100 kHz herausfiltert.
-
-- **WBFM Receive:** Dieser Block ist spezifisch für die Verarbeitung von Breitband-FM-Signalen. Er demoduliert das Signal, das mit einer Rate von 400 kHz abgetastet wurde. Das Ergebnis ist ein demoduliertes Audiosignal, das für den menschlichen Gehörsinn wahrnehmbar ist.
-
-- **Rational Resampler (nach dem WBFM Receive):** Wie im vorherigen Blockdiagramm wird auch hier das Signal weiter dezimiert, um die Sample-Rate auf 48 kHz zu reduzieren, was eine Standard-Audio-Sample-Rate ist.
-
-- **Audio Sink:** Der Audio Sink gibt das verarbeitete Audiosignal an den Audioausgang des Computers zur akustischen Wiedergabe aus.
-
-- **QT GUI Frequency Sink und QT GUI Waterfall Sink:** Diese grafischen Blöcke zeigen eine Echtzeit-Visualisierung des Frequenzspektrums (Frequency Sink) und des zeitabhängigen Spektrums (Waterfall Sink) des verarbeiteten Signals. Sie zeigen die Daten an, die durch das USRP-Gerät empfangen werden.
-
-- **Variable:** Es gibt einen Variable-Block (variable_0), dessen Wert im Diagramm mit 0 angegeben ist. Dieser könnte als Platzhalter für spätere Konfigurationen oder Berechnungen dienen.
-
-### Simulation/Ausgabe:
-
-![funkR Sim](Images/funkR-sim.png)
 
 ## gong-tx
 
