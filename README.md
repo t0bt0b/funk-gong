@@ -28,6 +28,9 @@ School project by Prestros Fabian, Rath Tobias and Rucker Josef
 
 - **Variable:** Es gibt zwei Variable-Blöcke (**audio_samp_rate** und **decimation_rf**), die zur Konfiguration anderer Blöcke genutzt werden. Sie sind globale Parameter, die in mehreren Blöcken verwendet werden können.
 
+### Simulation/Ausgabe:
+
+![FUNKGONG Sim](Images/FUNKGONG-sim.png)
 
 ## funkR (FM Radio)
 
@@ -53,6 +56,9 @@ School project by Prestros Fabian, Rath Tobias and Rucker Josef
 
 - **Variable:** Es gibt einen Variable-Block (variable_0), dessen Wert im Diagramm mit 0 angegeben ist. Dieser könnte als Platzhalter für spätere Konfigurationen oder Berechnungen dienen.
 
+### Simulation/Ausgabe:
+
+![funkR Sim](Images/funkR-sim.png)
 
 ## gong-tx
 
